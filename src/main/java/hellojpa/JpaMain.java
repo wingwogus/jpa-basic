@@ -16,15 +16,14 @@ public class JpaMain {
         tx.begin();
 
         try {
-            Member member = new Member(150L, "A");
-            Member member2 = new Member(151L, "B");
+            Movie movie = new Movie();
+            movie.setDirector("ㅎㅇ");
+            movie.setActor("bbb");
+            movie.setName("바람");
+            movie.setPrice(10000);
 
-            em.persist(member);
-            em.persist(member2);
+            em.persist(movie);
 
-            System.out.println("==================");
-
-            member2.setName("C");
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
