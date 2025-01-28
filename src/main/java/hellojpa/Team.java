@@ -2,16 +2,19 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn
-public class Item {
+public class Team {
 
     @Id @GeneratedValue
     private Long id;
 
     private String name;
-    private int price;
+
+    @OneToMany(mappedBy = "team")
+    private List<Member> members = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -29,11 +32,11 @@ public class Item {
         this.name = name;
     }
 
-    public int getPrice() {
-        return price;
+    public List<Member> getMembers() {
+        return members;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setMembers(List<Member> members) {
+        this.members = members;
     }
 }
